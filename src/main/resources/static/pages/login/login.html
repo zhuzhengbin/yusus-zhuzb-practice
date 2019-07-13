@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<form id="loginform" name="loginform" action="<%=path %>/login" method="post">
+    <div class="form-group mg-t20">
+        <i class="icon-user icon_font"></i>
+        <input type="text" class="login_input" id="sfzh" name="sfzh" placeholder="请输入用户名"/>
+    </div>
+    <div class="form-group mg-t20">
+        <i class="icon-lock icon_font"></i>
+        <input type="password" class="login_input" id="pwd" name="pwd" placeholder="请输入密码"/>
+    </div>
+    <div class="checkbox mg-b25">
+        <label>
+            <!--  <input type="checkbox" />记住密码 -->
+        </label>
+        <span style="color: red;" id="error">
+			<%
+			String message = (String)request.getAttribute("message");
+				if(StringUtils.isNotBlank(message)){ %>
+						  	<%=message %>
+						  	<%
+						  	}
+							%>
+	    </span>
+    </div>
+    <button id="login" type="submit" style="submit" class="login_btn">登 录</button>
+</form>
+
+</body>
+</html>

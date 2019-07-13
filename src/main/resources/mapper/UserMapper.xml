@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yusys.repository.mapper.UserMapper">
+
+    <!--向数据库中插入用户信息-->
+    <!--    <insert id="saveUser" parameterType="com.yusys.domain.User">-->
+    <!--        insert into ZHUZB_TEST(ID,NAME) VALUES(#{id},#{name})-->
+    <!--    </insert>-->
+
+
+    <!--向数据库中插入用户信息-->
+    <insert id="saveUser" parameterType="com.yusys.domain.User">
+        insert into ZHUZB(ID,NAME) VALUES(#{id},#{name})
+    </insert>
+
+    <!--查询所有用户信息-->
+    <select id="queryAllUsers" resultType="com.yusys.domain.User">
+
+    </select>
+
+</mapper>
