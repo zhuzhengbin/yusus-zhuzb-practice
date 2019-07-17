@@ -1,97 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>我的第一个Web小项目</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-    <!--    <script type="text/javascript" src="../../libs/js/jquery-3.4.1.js"></script>-->
+    <!--    <script type="text/javascript" src="../../libs/jquery/jquery-3.4.1.jquery"></script>-->
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
-    <!--    <script type="text/javascript" src="./main.js"></script>-->
 </head>
 <body>
 <div id="app">
-    <div>{{ message }}</div>
-    <input v-model="id" value="输入ID">
-    <input v-model="name" value="输入姓名">
-    <button v-on:click="clickFn">保存</button>
+    <div>{{message}}</div>
+    <!--    <input v-model="id" value="输入ID"><br>-->
+    <!--    <input v-model="name" value="输入姓名"><br>-->
+    <!--    <input type="file" id="image"><br>-->
+    <button v-on:click="saveUserFn">保存用户信息</button>
+    <button v-on:click="readUserFn">读取用户信息</button>
+    <h5>请选择要上传的图片：</h5><br>
+    <input type="file" id="upFile">
 </div>
-
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue!',
-            id: '',
-            name: ''
-        },
-        methods: {
-            clickFn: function () {
-                var _this = this;
-                var data = {'id': _this.id, 'name': _this.name};
-                // $.ajax({
-                //     type: "POST",
-                //     url: "http://localhost:9999/user/saverUser",
-                //     // url: location.host + "/user/saverUser",
-                //     dataType: "json",
-                //     contentType: "application/json", //不能添加这个头
-                //     data: JSON.stringify(data), //这里不能进行JSON.stringify,发送请求的数据在:form data
-                //     success: function (data) {
-                //         _this.message = "Success!";
-                //     },
-                //     error: function () {
-                //         _this.message = "failed!";
-                //     }
-                // });
-
-
-             //    $.ajax({
-             //     type: "POST",
-             //     url: "http://localhost:9999/user/saverUser",
-             //     contentType: "application/json;charset=utf-8",
-             //     data: JSON.stringify({id: _this.id, name: _this.name}),
-             //     dataType: "json",
-             //     success: function () {
-             //         // alert(account.id);
-             //         console.log("success.");
-             //     }
-             // });
-
-
-                // $.post("http://127.0.0.1:9999/user/saverUser", {id: _this.id, name: _this.name}, function () {
-                //     // alert(account.id);
-                //     console.log("success.");
-                // }, "json");
-
-
-                var xhr = new XMLHttpRequest();
-                //ajax事件设置，以便接收返回的信息
-                xhr.onreadystatechange = function(){
-                    if(xhr.readyState == 4){
-                        alert(xhr.responseText);
-                    }
-                }
-                xhr.open('post', 'http://localhost:9999/user/saverUser');//加入了get参数信息
-                //post方式传递数据是模拟form表单传递数据
-                //form表单的post格式数据是通过xml形式传递给服务器的
-                //以下setRequestHeader()方法必须要在open()方法后调用
-                xhr.setRequestHeader("content-type", "application/json");
-                xhr.send(JSON.stringify(data));
-
-
-
-                // $.ajax({
-                //     type: "GET",
-                //     url: "http://localhost:9999/user/api",
-                //     success: function () {
-                //         _this.message = "Success!";
-                //     },
-                //     error: function () {
-                //         _this.message = "failed!";
-                //     }
-                // });
-            }
-        }
-    })
-</script>
+<script type="text/javascript" src="main.js"></script>
 </body>
 </html>

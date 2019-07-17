@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传图片</title>
+    <script type="text/javascript" src="jquery-3.4.1.jquery"></script>
+</head>
+<body>
+<input type="file" id="image"><br/>
+<div id="div"></div>
+</body>
+<!--<script type="text/javascript" src="../../libs/jquery/jquery-3.4.1.jquery"></script>-->
+<script type="text/javascript">
+    //给file添加一个事件,当选择了文件后,执行下面uploadFile的方法
+    $("#image").bind("change", function () {
+        uploadFile($(this));
+    });
+
+    //通过onChange直接获取base64数据
+    function uploadFile(file) {
+        var reader = new FileReader();
+        var allowImgFileSize = 2100000; //上传图片最大值(单位字节)（ 2M = 2097152B ）超过2M上传失败
+        var file = $("#image")[0].files[0];
+        var imgUrlBase64;
+        if (file) {
+            //将文件以Data URL形式读入页面
+            imgUrlBase64 = reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                //var ImgFileSize = reader.result.substring(reader.result.indexOf(",") + 1).length;//截取base64码部分（可选可不选，需要与后台沟通）
+                if (allowImgFileSize != 0 && allowImgFileSize < reader.result.length) {
+                    alert('上传失败，请上传不大于2M的图片！');
+                    return;
+                } else {
+                    //将转码后的数据展示出来
+                    $("#div").html(reader.result)   //data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
+                }
+            }
+        }
+    }
+</script>
+</html>

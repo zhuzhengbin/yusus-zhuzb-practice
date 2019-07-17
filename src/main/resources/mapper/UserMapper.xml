@@ -4,19 +4,21 @@
 <mapper namespace="com.yusys.repository.mapper.UserMapper">
 
     <!--向数据库中插入用户信息-->
-    <!--    <insert id="saveUser" parameterType="com.yusys.domain.User">-->
-    <!--        insert into ZHUZB_TEST(ID,NAME) VALUES(#{id},#{name})-->
-    <!--    </insert>-->
-
-
-    <!--向数据库中插入用户信息-->
     <insert id="saveUser" parameterType="com.yusys.domain.User">
-        insert into ZHUZB(ID,NAME) VALUES(#{id},#{name})
+        insert into user_zhu(ID,NAME,PHOTO,USER_INFO) VALUES(#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{photo,jdbcType=BLOB},#{userInfo,jdbcType=CLOB})
     </insert>
 
-    <!--查询所有用户信息-->
-    <select id="queryAllUsers" resultType="com.yusys.domain.User">
+    <!--向数据库中插入用户信息-->
+    <insert id="addUser" parameterType="com.yusys.domain.User">
+        insert into user_zhu(ID,NAME,PHOTO,USER_INFO) VALUES(#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{photo,jdbcType=BLOB},#{userInfo,jdbcType=CLOB})
+    </insert>
 
+    <select id="readPhoto" parameterType="java.lang.String" resultType="com.yusys.domain.User">
+        select * from user_zhu where id = #{id}
+    </select>
+
+    <select id="getUserDetailById" parameterType="java.lang.String" resultType="com.yusys.domain.User">
+        select * from user_zhu where id = #{id}
     </select>
 
 </mapper>

@@ -1,16 +1,34 @@
 package com.yusys.domain;
 
-import java.util.List;
+import org.springframework.context.annotation.Bean;
 
 /**
- * 自定义返回体
+ * 响应体
  */
-public class ResultDto<T> {
 
-    // 数据条数
-    private int count;
-    // 成功或失败
-    private String message;
-    // 数据
-    private List<T> data;
+public class ResultDto {
+
+    // 默认200响应码
+    private int code = 200;
+    private String message = "success";
+
+
+    public ResultDto() {
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
